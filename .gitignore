@@ -1,0 +1,54 @@
+*.class
+*.log
+target/
+
+# vim
+*.sw?
+
+# Ignore [ce]tags files
+tags
+.idea
+benchmarks/results
+.java-version
+.DS_Store
+.metals
+
+# Ignore local configuration
+.sbtrc
+scripts/travis-config.sh
+
+scratch/
+target/
+
+# Ignore project files for Eclipse
+.classpath
+.settings
+.project
+.worksheet
+
+# Ignore SBT files
+.js
+.jvm
+.cache-main
+.cache-tests
+
+# Ignore project files for IntelliJ
+.idea
+.bsp
+*.iml
+*.iws
+
+# Ignore OS X metadata
+.DS_Store
+
+# Ignore vim swap files
+.swp
+.*.swp
+.swo
+.*.swo
+
+# Ignore dev env
+developer.conf
+
+.scalafmt.conf
+

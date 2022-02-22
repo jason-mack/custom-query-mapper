@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>appinsights-PAL</title>
+    <link href="https://unpkg.com/graphiql@1.0.6/graphiql.min.css" rel="stylesheet" />
+</head>
+<body style="margin: 0;">
+<div id="graphiql" style="height: 100vh;"></div>
+
+<script
+        crossorigin
+        src="https://unpkg.com/react@17.0.1/umd/react.production.min.js"
+></script>
+<script
+        crossorigin
+        src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.production.min.js"
+></script>
+<script
+        crossorigin
+        src="https://unpkg.com/graphiql@1.0.6/graphiql.min.js"
+></script>
+
+<script>
+    const graphQLFetcher = (graphQLParams, opts) => {
+        const headers = Object.entries(opts.headers || {}).reduce((memo, [key, value]) => {
+            memo[key] = JSON.stringify(value);
+            return memo;
+        }, {});
+
+        return fetch('/graphql', {
+            method: 'post',
+            headers,
+            body: JSON.stringify(graphQLParams),
+        })
+            .then(response => response.json())
+            .catch(console.error);
+    };
+    ReactDOM.render(
+        React.createElement(GraphiQL, {
+            fetcher: graphQLFetcher,
+            headers: JSON.stringify({
+                'X-Claimtags': ['urn:infosight:041da775-3d1c-43c4-a026-2ebbd26c3a09']
+            }, undefined, 2),
+            headerEditorEnabled: true,
+            shouldPersistHeaders: true
+        }),
+        document.getElementById('graphiql'),
+    );
+</script>
+</body>
+</html>
